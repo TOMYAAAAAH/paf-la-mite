@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://drewna04sxgtr"]
 
 [ext_resource type="PackedScene" uid="uid://c3ju64y5n75u5" path="res://mite.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://bixpk1d8gbrn4" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bwlhkhq6me7cx" path="res://floor.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://b36rfxdnau3mq" path="res://grid.png" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c2angheo0hmqj" path="res://bouncer.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://d5k8npeklfsx" path="res://hopper.tscn" id="6_7mycd"]
 
 [node name="Main" type="Node2D" unique_id=2144659749]
+script = ExtResource("1_lquwl")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=650109987]
 offset_top = -363.0
-offset_right = 6459.0
+offset_right = 8175.0
 offset_bottom = 713.0
 texture = ExtResource("3_h2yge")
 stretch_mode = 1
@@ -18,6 +21,32 @@ stretch_mode = 1
 position = Vector2(-19, -127)
 
 [node name="Mite" parent="." unique_id=693137260 instance=ExtResource("1_0xm2m")]
+position = Vector2(80, 499)
 
-[node name="Area2D" parent="." unique_id=200657326 instance=ExtResource("4_1bvp3")]
-position = Vector2(379, 498)
+[node name="Bouncer" parent="." unique_id=200657326 instance=ExtResource("4_1bvp3")]
+position = Vector2(452, 490)
+
+[node name="Bouncer2" parent="." unique_id=1204321091 instance=ExtResource("4_1bvp3")]
+position = Vector2(1054, 490)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=933197081]
+
+[node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=485472565]
+offset_left = 14.0
+offset_top = 269.0
+offset_right = 65.0
+offset_bottom = 300.0
+text = "Reset"
+
+[node name="JumpButton" type="Button" parent="CanvasLayer" unique_id=36778432]
+offset_left = 18.0
+offset_top = 221.0
+offset_right = 102.0
+offset_bottom = 252.0
+text = "Sauter (n)"
+
+[node name="Hopper" parent="." unique_id=708622132 instance=ExtResource("6_7mycd")]
+position = Vector2(183, 454)
+
+[connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="leg_collected" from="Hopper" to="Mite" method="_on_leg_collected"]

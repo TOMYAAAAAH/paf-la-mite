@@ -35,7 +35,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=877561712]
 sprite_frames = SubResource("SpriteFrames_tnjd3")
 animation = &"fly"
-frame_progress = 0.21466891
+frame_progress = 0.2203509
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1576460365]
 shape = SubResource("CapsuleShape2D_bcwpt")
