@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cuhnv5iemw5my" path="res://bouncer_lg.tscn" id="7_5vw27"]
 [ext_resource type="Shader" uid="uid://cpv5kh01jy27p" path="res://cahier_brouillon.gdshader" id="7_272bh"]
 [ext_resource type="AudioStream" uid="uid://doilvmamtjjh1" path="res://theme.mp3" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://dxwcdc8564acy" path="res://launcher.tscn" id="9_kek77"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7mycd"]
 font_size = 49
@@ -103,6 +104,9 @@ metadata/_edit_lock_ = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1937577710]
 stream = ExtResource("8_5vw27")
+
+[node name="Launcher" parent="." unique_id=170151492 instance=ExtResource("9_kek77")]
+position = Vector2(81, 429)
 
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverScreen/PlayAgainButton" to="." method="_on_reset_button_pressed"]

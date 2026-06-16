@@ -40,6 +40,7 @@ var is_charging = false
 func _ready():
 	_setup_audio_players()
 	_setup_hopper_connections()
+	_setup_bouncer_connections()
 	_update_jump_button()
 	jump_button.pressed.connect(_on_jump)
 
@@ -58,12 +59,28 @@ func _setup_hopper_connections():
 	for hopper in hoppers:
 		hopper.leg_collected.connect(_on_leg_collected)
 
+func _setup_bouncer_connections():
+	var bouncers_sm = get_tree().get_nodes_in_group("bouncer_sm")
+	for b_sm in bouncers_sm:
+		if b_sm.has_signal("bouncer_sm_hit"):
+			b_sm.bouncer_sm_hit.connect(_on_bouncer_sm_hit)
+		else:
+			printerr("Node %s in bouncer_sm group is missing bouncer_sm_hit signal!" % b_sm.name)
+
+	var bouncers_lg = get_tree().get_nodes_in_group("bouncer_lg")
+	for b_lg in bouncers_lg:
+		if b_lg.has_signal("bouncer_lg_hit"):
+			b_lg.bouncer_lg_hit.connect(_on_bouncer_lg_hit)
+		else:
+			printerr("Node %s in bouncer_lg group is missing bouncer_lg_hit signal!" % b_lg.name)
+
 # --- Physics Process ---
 func _physics_process(delta):
 	_apply_gravity(delta)
 	_handle_floor_collision()
 	_handle_launch_input(delta)
 	_handle_dive_input()
+	_handle_jump_input()
 	_apply_movement()
 	_update_debug_label()
 	_update_score_label()
@@ -77,9 +94,9 @@ func _apply_gravity(delta):
 # --- Launch Input ---
 func _handle_launch_input(delta):
 	if is_starting:
-		if Input.is_action_pressed("launch"):
+		if Input.is_action_pressed("jump"):
 			_charge_launch(delta)
-		elif Input.is_action_just_released("launch") and is_charging:
+		elif Input.is_action_just_released("jump") and is_charging:
 			_execute_launch()
 			is_charging = false
 			is_starting = false
@@ -186,6 +203,10 @@ func _on_floor_touched():
 # --- Jump Button ---
 func _update_jump_button():
 	jump_button.text = "Jump (%d)" % leg_count
+
+func _handle_jump_input():
+	if Input.is_action_just_pressed("jump") and not is_starting:
+		_on_jump()
 
 func _on_jump():
 	if leg_count > 0:

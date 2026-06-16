@@ -1,42 +1,23 @@
 [gd_scene format=3 uid="uid://c3ju64y5n75u5"]
 
 [ext_resource type="Script" uid="uid://cf4wg06agqojj" path="res://mite.gd" id="1_ekd8s"]
-[ext_resource type="Texture2D" uid="uid://c1lgk2nhu31lu" path="res://mite1.png" id="2_peu4h"]
-[ext_resource type="Texture2D" uid="uid://3g0lo5d8andw" path="res://mite2.png" id="3_2iwep"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tnjd3"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"fall",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 2.0,
-"texture": ExtResource("2_peu4h")
-}, {
-"duration": 2.0,
-"texture": ExtResource("3_2iwep")
-}],
-"loop": true,
-"name": &"fly",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://bv5qbsoh3ltks" path="res://art/mite1.png" id="2_rubit"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcwpt"]
-radius = 31.0
-height = 62.0
+radius = 29.0
+height = 76.0
 
 [node name="Mite" type="CharacterBody2D" unique_id=693137260]
 script = ExtResource("1_ekd8s")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=877561712]
-sprite_frames = SubResource("SpriteFrames_tnjd3")
-animation = &"fly"
-frame_progress = 0.32465953
+[node name="Mite1" type="Sprite2D" parent="." unique_id=974730213]
+position = Vector2(-0.521389, -0.49999785)
+scale = Vector2(0.30481282, 0.3048128)
+texture = ExtResource("2_rubit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1576460365]
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_bcwpt")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1144531218]

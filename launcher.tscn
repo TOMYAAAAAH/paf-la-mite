@@ -1,6 +1,17 @@
 [gd_scene format=3 uid="uid://dxwcdc8564acy"]
 
-[node name="Launcher" type="ColorRect" unique_id=1791333389]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.14733289, 0.34409294, 0, 0.63900006)
+[ext_resource type="Texture2D" uid="uid://c3g4dk61rg1a7" path="res://art/launcher_body.png" id="1_cvfd6"]
+[ext_resource type="Texture2D" uid="uid://c1fm54xmgrgw7" path="res://art/launcher_leg.png" id="2_vcerv"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=170151492]
+
+[node name="LauncherBody" type="Sprite2D" parent="." unique_id=979746101]
+position = Vector2(1.9999999, -20)
+rotation = -0.20245819
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_cvfd6")
+
+[node name="LauncherLeg" type="Sprite2D" parent="." unique_id=2113047310]
+position = Vector2(-6, 11)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_vcerv")
