@@ -3,35 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://c3ju64y5n75u5" path="res://mite.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://bixpk1d8gbrn4" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bwlhkhq6me7cx" path="res://floor.tscn" id="2_h2yge"]
-[ext_resource type="Texture2D" uid="uid://b36rfxdnau3mq" path="res://grid.png" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c2angheo0hmqj" path="res://bouncer.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d5k8npeklfsx" path="res://hopper.tscn" id="6_7mycd"]
-[ext_resource type="Shader" uid="uid://cpv5kh01jy27p" path="res://cahier_brouillon.gdshader" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://dxwcdc8564acy" path="res://launcher.tscn" id="7_272bh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
-shader = ExtResource("7_272bh")
-shader_parameter/color_paper = Color(0.97, 0.96, 0.92, 1)
-shader_parameter/color_lines = Color(0.2, 0.4, 0.65, 0.4)
-shader_parameter/color_margin = Color(0.85, 0.25, 0.25, 0.6)
-shader_parameter/grain_intensity = 0.04
-shader_parameter/fiber_intensity = 0.03
-shader_parameter/paper_scale = 300.0
-shader_parameter/line_spacing = 0.06
-shader_parameter/line_thickness = 0.002
-shader_parameter/margin_position = 0.15
-shader_parameter/margin_thickness = 0.003
-[ext_resource type="PackedScene" uid="uid://dxwcdc8564acy" path="res://launcher.tscn" id="7_272bh"]
 
 [node name="Main" type="Node2D" unique_id=2144659749]
 script = ExtResource("1_lquwl")
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=650109987]
-offset_left = -1.0
-offset_top = -1881.0
-offset_right = 8174.0
-offset_bottom = -805.0
-texture = ExtResource("3_h2yge")
-stretch_mode = 1
 
 [node name="Floor" parent="." unique_id=215917808 instance=ExtResource("2_h2yge")]
 position = Vector2(-19, -127)
