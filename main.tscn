@@ -5,8 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://bwlhkhq6me7cx" path="res://floor.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://b36rfxdnau3mq" path="res://grid.png" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c2angheo0hmqj" path="res://bouncer.tscn" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://b1qdkm66dg1lh" path="res://boing-big.wav" id="5_efxa6"]
 [ext_resource type="PackedScene" uid="uid://d5k8npeklfsx" path="res://hopper.tscn" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://buipuxh8rrc0t" path="res://boing-small.wav" id="6_dg77c"]
 [ext_resource type="Shader" uid="uid://cpv5kh01jy27p" path="res://cahier_brouillon.gdshader" id="7_272bh"]
+[ext_resource type="AudioStream" uid="uid://x8ojqdviybcn" path="res://launch.mp3" id="7_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://bo4ed3nlami8g" path="res://eat.mp3" id="8_w48qg"]
+[ext_resource type="AudioStream" uid="uid://doilvmamtjjh1" path="res://theme.mp3" id="12_dg77c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
 shader = ExtResource("7_272bh")
@@ -26,45 +31,6 @@ shader_parameter/camera_y = 0.0
 [node name="Main" type="Node2D" unique_id=2144659749]
 script = ExtResource("1_lquwl")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=650109987]
-offset_left = -1.0
-offset_top = -1881.0
-offset_right = 8174.0
-offset_bottom = -805.0
-texture = ExtResource("3_h2yge")
-stretch_mode = 1
-
-[node name="Floor" parent="." unique_id=215917808 instance=ExtResource("2_h2yge")]
-position = Vector2(-19, -127)
-
-[node name="Mite" parent="." unique_id=693137260 instance=ExtResource("1_0xm2m")]
-position = Vector2(80, 499)
-
-[node name="Bouncer" parent="." unique_id=200657326 instance=ExtResource("4_1bvp3")]
-position = Vector2(452, 490)
-
-[node name="Bouncer2" parent="." unique_id=1204321091 instance=ExtResource("4_1bvp3")]
-position = Vector2(1054, 490)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=933197081]
-
-[node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=485472565]
-offset_left = 14.0
-offset_top = 269.0
-offset_right = 65.0
-offset_bottom = 300.0
-text = "Reset"
-
-[node name="JumpButton" type="Button" parent="CanvasLayer" unique_id=36778432]
-offset_left = 18.0
-offset_top = 221.0
-offset_right = 102.0
-offset_bottom = 252.0
-text = "Sauter (n)"
-
-[node name="Hopper" parent="." unique_id=708622132 instance=ExtResource("6_7mycd")]
-position = Vector2(183, 454)
-
 [node name="ProceduralBackground" type="CanvasLayer" parent="." unique_id=2000960349]
 layer = -1
 
@@ -73,8 +39,71 @@ material = SubResource("ShaderMaterial_5vw27")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -741.0
+offset_right = 7700.0
+offset_bottom = -741.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=2134292719]
+
+[node name="Mite" parent="." unique_id=693137260 instance=ExtResource("1_0xm2m")]
+position = Vector2(235, -360)
+
+[node name="Sound" type="Node" parent="Mite" unique_id=519223048]
+
+[node name="JumpSoundBig" type="AudioStreamPlayer2D" parent="Mite/Sound" unique_id=189389684]
+position = Vector2(80, 499)
+stream = ExtResource("5_efxa6")
+
+[node name="JumpSoundSmall" type="AudioStreamPlayer2D" parent="Mite/Sound" unique_id=1840837840]
+stream = ExtResource("6_dg77c")
+
+[node name="LaunchSound" type="AudioStreamPlayer2D" parent="Mite/Sound" unique_id=1027473838]
+stream = ExtResource("7_ycdy4")
+
+[node name="EatSound" type="AudioStreamPlayer2D" parent="Mite/Sound" unique_id=1122634475]
+stream = ExtResource("8_w48qg")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=650109987]
+offset_left = -1.0
+offset_top = -1799.0
+offset_right = 8174.0
+offset_bottom = -723.0
+texture = ExtResource("3_h2yge")
+stretch_mode = 1
+
+[node name="Floor" parent="." unique_id=215917808 instance=ExtResource("2_h2yge")]
+position = Vector2(27, -24)
+
+[node name="Bouncer" parent="." unique_id=200657326 instance=ExtResource("4_1bvp3")]
+position = Vector2(439, -221)
+
+[node name="Bouncer2" parent="." unique_id=1204321091 instance=ExtResource("4_1bvp3")]
+position = Vector2(771, -38)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=933197081]
+
+[node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=485472565]
+offset_left = 40.0
+offset_top = -46.0
+offset_right = 91.0
+offset_bottom = -15.0
+text = "Reset"
+
+[node name="JumpButton" type="Button" parent="CanvasLayer" unique_id=36778432]
+offset_left = 25.0
+offset_top = -148.0
+offset_right = 109.0
+offset_bottom = -117.0
+text = "Sauter (n)"
+
+[node name="Hopper" parent="." unique_id=708622132 instance=ExtResource("6_7mycd")]
+position = Vector2(284, -205)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=841091117]
+stream = ExtResource("12_dg77c")
 
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="leg_collected" from="Hopper" to="Mite" method="_on_leg_collected"]

@@ -46,7 +46,7 @@ void fragment() {
     
     // Création d'un UV virtuel synchronisé sur les mouvements de la caméra
     // Le multiplicateur 0.0002 crée un effet de parallaxe discret et fluide
-    vec2 moving_uv = vec2(uv.x + (camera_x * 0.0002), uv.y + (camera_y * 0.0002)); 
+    vec2 moving_uv = vec2(uv.x + camera_x, uv.y + camera_y);
     
     // -------------------------------------------------------------
     // 1. GÉNÉRATION DE L'ASPECT PAPIER (LE FOND)
