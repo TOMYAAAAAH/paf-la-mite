@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://c3ju64y5n75u5" path="res://mite.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://bixpk1d8gbrn4" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bwlhkhq6me7cx" path="res://floor.tscn" id="2_h2yge"]
-[ext_resource type="Texture2D" uid="uid://b36rfxdnau3mq" path="res://grid.png" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c2angheo0hmqj" path="res://bouncer.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://b1qdkm66dg1lh" path="res://boing-big.wav" id="5_efxa6"]
 [ext_resource type="PackedScene" uid="uid://d5k8npeklfsx" path="res://hopper.tscn" id="6_7mycd"]
@@ -86,24 +85,33 @@ position = Vector2(771, -38)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=933197081]
 
 [node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=485472565]
-offset_left = 40.0
-offset_top = -46.0
-offset_right = 91.0
-offset_bottom = -15.0
+offset_left = 14.0
+offset_top = 61.0
+offset_right = 65.0
+offset_bottom = 92.0
 text = "Reset"
 
 [node name="JumpButton" type="Button" parent="CanvasLayer" unique_id=36778432]
-offset_left = 25.0
-offset_top = -148.0
-offset_right = 109.0
-offset_bottom = -117.0
+offset_left = 18.0
+offset_top = 13.0
+offset_right = 102.0
+offset_bottom = 44.0
 text = "Sauter (n)"
 
 [node name="Hopper" parent="." unique_id=708622132 instance=ExtResource("6_7mycd")]
-position = Vector2(284, -205)
+position = Vector2(300, 510)
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=841091117]
-stream = ExtResource("12_dg77c")
+[node name="ProceduralBackground" type="CanvasLayer" parent="." unique_id=2000960349]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="ProceduralBackground" unique_id=22865469]
+material = SubResource("ShaderMaterial_5vw27")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="leg_collected" from="Hopper" to="Mite" method="_on_leg_collected"]

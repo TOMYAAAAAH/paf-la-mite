@@ -1,15 +1,13 @@
 extends Area2D
 
+signal bouncer_sm_hit
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var collision_shape = $CollisionShape2D
 
+func _ready():
+	body_entered.connect(_on_body_entered)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+func _on_body_entered(body):
+	if body.name == "Mite":
+		emit_signal("bouncer_sm_hit")
+		collision_shape.disabled = true

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dxwcdc8564acy"]
+
+[node name="Launcher" type="ColorRect" unique_id=1791333389]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.14733289, 0.34409294, 0, 0.63900006)
