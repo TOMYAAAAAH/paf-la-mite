@@ -19,6 +19,8 @@ shader_parameter/line_spacing = 0.06
 shader_parameter/line_thickness = 0.002
 shader_parameter/margin_position = 0.15
 shader_parameter/margin_thickness = 0.003
+shader_parameter/camera_x = 0.0
+shader_parameter/camera_y = 0.0
 
 [node name="Main" type="Node2D" unique_id=2144659749]
 script = ExtResource("1_lquwl")
@@ -59,10 +61,11 @@ layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="ProceduralBackground" unique_id=22865469]
 material = SubResource("ShaderMaterial_5vw27")
-offset_left = 6.0
-offset_top = -782.0
-offset_right = 8166.0
-offset_bottom = 555.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="leg_collected" from="Hopper" to="Mite" method="_on_leg_collected"]
