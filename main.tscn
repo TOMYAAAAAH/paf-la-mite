@@ -5,9 +5,20 @@
 [ext_resource type="PackedScene" uid="uid://bwlhkhq6me7cx" path="res://floor.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c2angheo0hmqj" path="res://bouncer.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d5k8npeklfsx" path="res://hopper.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://dxwcdc8564acy" path="res://launcher.tscn" id="7_272bh"]
+[ext_resource type="Shader" uid="uid://cpv5kh01jy27p" path="res://cahier_brouillon.gdshader" id="7_272bh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+shader = ExtResource("7_272bh")
+shader_parameter/color_paper = Color(0.97, 0.96, 0.92, 1)
+shader_parameter/color_lines = Color(0.2, 0.4, 0.65, 0.4)
+shader_parameter/color_margin = Color(0.85, 0.25, 0.25, 0.6)
+shader_parameter/grain_intensity = 0.04
+shader_parameter/fiber_intensity = 0.03
+shader_parameter/paper_scale = 300.0
+shader_parameter/line_spacing = 0.06
+shader_parameter/line_thickness = 0.002
+shader_parameter/margin_position = 0.15
+shader_parameter/margin_thickness = 0.003
 
 [node name="Main" type="Node2D" unique_id=2144659749]
 script = ExtResource("1_lquwl")
@@ -52,12 +63,6 @@ offset_left = 6.0
 offset_top = -782.0
 offset_right = 8166.0
 offset_bottom = 555.0
-
-[node name="Launcher" parent="." unique_id=1791333389 instance=ExtResource("7_272bh")]
-offset_left = 30.0
-offset_top = 492.0
-offset_right = 70.0
-offset_bottom = 532.0
 
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="leg_collected" from="Hopper" to="Mite" method="_on_leg_collected"]
