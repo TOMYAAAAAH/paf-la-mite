@@ -4,9 +4,9 @@ extends CharacterBody2D
 const GRAVITY := 980
 const MAX_LAUNCH_POWER := 1000
 const LAUNCH_CHARGE_SPEED := 1000
-const BOUNCER_SPEED_MULTIPLIER_SM := 1.2
+const BOUNCER_SPEED_MULTIPLIER_SM := 1.3
 const BOUNCER_SPEED_MULTIPLIER_LG := 1.8
-const FLOOR_SPEED_MULTIPLIER := 0.7
+const FLOOR_SPEED_MULTIPLIER := 0.8
 const DIVE_VELOCITY_MULTIPLIER := 1.1
 const LAUNCH_SPEED_RATIO := 0.7
 const FLOOR_SPEED_THRESHOLD := 25
@@ -15,6 +15,7 @@ const DEFAULT_JUMP_SPEED := 400
 
 # --- Node References ---
 @onready var velocity_label = $VelocityLabel
+@onready var leg = $Leg
 @onready var jump_button = get_node("/root/Main/CanvasLayer/JumpButton")
 @onready var score_label = get_node("/root/Main/CanvasLayer/ScoreLabel")
 @onready var game_over_screen = get_node("/root/Main/CanvasLayer/GameOverScreen")
@@ -207,6 +208,7 @@ func _on_floor_touched():
 # --- Jump Button ---
 func _update_jump_button():
 	jump_button.text = "Jump (%d)" % leg_count
+	self.leg.visible = leg_count > 0
 
 func _handle_jump_input():
 	if Input.is_action_just_pressed("ui_accept") and not is_starting:

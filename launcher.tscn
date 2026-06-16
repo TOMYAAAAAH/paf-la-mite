@@ -6,12 +6,12 @@
 [node name="Sprite2D" type="Sprite2D" unique_id=170151492]
 
 [node name="LauncherBody" type="Sprite2D" parent="." unique_id=979746101]
-position = Vector2(-10, -32)
+position = Vector2(-10.000002, -113.000015)
 rotation = -0.5061455
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_cvfd6")
 
 [node name="LauncherLeg" type="Sprite2D" parent="." unique_id=2113047310]
 position = Vector2(-14.000003, 34)
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_vcerv")

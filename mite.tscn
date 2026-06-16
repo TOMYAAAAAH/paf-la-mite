@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cf4wg06agqojj" path="res://mite.gd" id="1_ekd8s"]
 [ext_resource type="Texture2D" uid="uid://bv5qbsoh3ltks" path="res://art/mite1.png" id="2_rubit"]
+[ext_resource type="Texture2D" uid="uid://b74fhxigiprho" path="res://art/leg.png" id="3_ekd8s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcwpt"]
 radius = 29.0
@@ -9,7 +10,6 @@ height = 76.0
 
 [node name="Mite" type="CharacterBody2D" unique_id=693137260]
 script = ExtResource("1_ekd8s")
-metadata/_edit_group_ = true
 
 [node name="Mite1" type="Sprite2D" parent="." unique_id=974730213]
 position = Vector2(-0.521389, -0.49999785)
@@ -21,7 +21,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_bcwpt")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1144531218]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.65, 0.65)
 
 [node name="VelocityLabel" type="Label" parent="." unique_id=854925634]
 visible = false
@@ -29,3 +29,9 @@ offset_left = -88.0
 offset_top = -311.0
 offset_right = -48.0
 offset_bottom = -288.0
+
+[node name="Leg" type="Sprite2D" parent="." unique_id=1684440694]
+visible = false
+position = Vector2(-35.000004, -5.999998)
+scale = Vector2(0.25285715, 0.25285715)
+texture = ExtResource("3_ekd8s")

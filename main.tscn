@@ -32,6 +32,10 @@ shader_parameter/margin_thickness = 0.003
 shader_parameter/camera_x = 0.0
 shader_parameter/camera_y = 0.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_4c57u"]
+font_size = 32
+font_color = Color(0, 5.7756904e-07, 0.637138, 1)
+
 [node name="Main" type="Node2D" unique_id=2144659749]
 script = ExtResource("1_lquwl")
 
@@ -40,57 +44,303 @@ position = Vector2(-6, 46)
 
 [node name="Mite" parent="." unique_id=693137260 instance=ExtResource("1_0xm2m")]
 visible = false
-position = Vector2(216, 480)
+position = Vector2(316, 310)
 
-[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1475602717]
-position = Vector2(767, 515)
+[node name="HopperGroup" type="CanvasGroup" parent="." unique_id=208860336]
 
-[node name="Bouncer" parent="CanvasGroup" unique_id=200657326 instance=ExtResource("4_1bvp3")]
-position = Vector2(17, 41)
+[node name="Hopper" parent="HopperGroup" unique_id=708622132 instance=ExtResource("6_7mycd")]
+position = Vector2(1507, 238)
 
-[node name="BouncerLG" parent="CanvasGroup" unique_id=79131146 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
-position = Vector2(466, 21)
+[node name="Hopper2" parent="HopperGroup" unique_id=1891947176 instance=ExtResource("6_7mycd")]
+position = Vector2(3999, 252)
 
-[node name="Bouncer2" parent="CanvasGroup" unique_id=1204321091 instance=ExtResource("4_1bvp3")]
-position = Vector2(3305, 39)
+[node name="Hopper3" parent="HopperGroup" unique_id=1147240129 instance=ExtResource("6_7mycd")]
+position = Vector2(3128, 494)
 
-[node name="Hopper" parent="CanvasGroup" unique_id=708622132 instance=ExtResource("6_7mycd")]
-position = Vector2(740, -277)
+[node name="Hopper4" parent="HopperGroup" unique_id=1572946301 instance=ExtResource("6_7mycd")]
+position = Vector2(4830, 550)
 
-[node name="BouncerLG2" parent="CanvasGroup" unique_id=220448700 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
-position = Vector2(4603, 21)
+[node name="Hopper5" parent="HopperGroup" unique_id=1582883039 instance=ExtResource("6_7mycd")]
+position = Vector2(2775, 516)
 
-[node name="Bouncer3" parent="CanvasGroup" unique_id=1140013386 instance=ExtResource("4_1bvp3")]
-position = Vector2(1109, 41)
+[node name="Hopper6" parent="HopperGroup" unique_id=1159277408 instance=ExtResource("6_7mycd")]
+position = Vector2(6213, 120)
 
-[node name="Hopper2" parent="CanvasGroup" unique_id=1891947176 instance=ExtResource("6_7mycd")]
-position = Vector2(3232, -263)
+[node name="Hopper7" parent="HopperGroup" unique_id=1726202949 instance=ExtResource("6_7mycd")]
+position = Vector2(8705, 134)
 
-[node name="Hopper3" parent="CanvasGroup" unique_id=1147240129 instance=ExtResource("6_7mycd")]
-position = Vector2(2361, -21)
+[node name="Hopper8" parent="HopperGroup" unique_id=58391427 instance=ExtResource("6_7mycd")]
+position = Vector2(8211, 399)
 
-[node name="BouncerLG3" parent="CanvasGroup" unique_id=966501999 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
-position = Vector2(2974, 33)
+[node name="Hopper10" parent="HopperGroup" unique_id=1956361870 instance=ExtResource("6_7mycd")]
+position = Vector2(7481, 398)
 
-[node name="Hopper4" parent="CanvasGroup" unique_id=1572946301 instance=ExtResource("6_7mycd")]
-position = Vector2(4063, 35)
+[node name="Hopper11" parent="HopperGroup" unique_id=926988948 instance=ExtResource("6_7mycd")]
+position = Vector2(11922, 272)
 
-[node name="Hopper5" parent="CanvasGroup" unique_id=1582883039 instance=ExtResource("6_7mycd")]
-position = Vector2(2008, 1)
+[node name="Hopper13" parent="HopperGroup" unique_id=1493526921 instance=ExtResource("6_7mycd")]
+position = Vector2(12753, 570)
 
-[node name="BouncerLG4" parent="CanvasGroup" unique_id=1345919775 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
-position = Vector2(2088, 57)
+[node name="Hopper14" parent="HopperGroup" unique_id=1838857985 instance=ExtResource("6_7mycd")]
+position = Vector2(10698, 536)
+
+[node name="Hopper15" parent="HopperGroup" unique_id=364497515 instance=ExtResource("6_7mycd")]
+position = Vector2(14136, 140)
+
+[node name="Hopper17" parent="HopperGroup" unique_id=1546901734 instance=ExtResource("6_7mycd")]
+position = Vector2(15583, 516)
+
+[node name="Hopper18" parent="HopperGroup" unique_id=1743993150 instance=ExtResource("6_7mycd")]
+position = Vector2(17459, 452)
+
+[node name="Hopper20" parent="HopperGroup" unique_id=126293780 instance=ExtResource("6_7mycd")]
+position = Vector2(20936, 287)
+
+[node name="Hopper21" parent="HopperGroup" unique_id=642617521 instance=ExtResource("6_7mycd")]
+position = Vector2(20065, 529)
+
+[node name="Hopper22" parent="HopperGroup" unique_id=782016551 instance=ExtResource("6_7mycd")]
+position = Vector2(21767, 585)
+
+[node name="Hopper23" parent="HopperGroup" unique_id=1923022468 instance=ExtResource("6_7mycd")]
+position = Vector2(19712, 551)
+
+[node name="Hopper24" parent="HopperGroup" unique_id=795707393 instance=ExtResource("6_7mycd")]
+position = Vector2(23150, 155)
+
+[node name="Hopper25" parent="HopperGroup" unique_id=1801886867 instance=ExtResource("6_7mycd")]
+position = Vector2(25642, 169)
+
+[node name="Hopper27" parent="HopperGroup" unique_id=1606346950 instance=ExtResource("6_7mycd")]
+position = Vector2(26473, 467)
+
+[node name="Hopper30" parent="HopperGroup" unique_id=1079002565 instance=ExtResource("6_7mycd")]
+position = Vector2(27988, 549)
+
+[node name="Hopper31" parent="HopperGroup" unique_id=840022565 instance=ExtResource("6_7mycd")]
+position = Vector2(29690, 605)
+
+[node name="Hopper33" parent="HopperGroup" unique_id=151965476 instance=ExtResource("6_7mycd")]
+position = Vector2(31073, 175)
+
+[node name="Hopper34" parent="HopperGroup" unique_id=305985954 instance=ExtResource("6_7mycd")]
+position = Vector2(33565, 189)
+
+[node name="Hopper35" parent="HopperGroup" unique_id=1585529503 instance=ExtResource("6_7mycd")]
+position = Vector2(32520, 551)
+
+[node name="Hopper37" parent="HopperGroup" unique_id=326752934 instance=ExtResource("6_7mycd")]
+position = Vector2(38590, 250)
+
+[node name="Hopper38" parent="HopperGroup" unique_id=2096684130 instance=ExtResource("6_7mycd")]
+position = Vector2(41082, 264)
+
+[node name="Hopper40" parent="HopperGroup" unique_id=647378033 instance=ExtResource("6_7mycd")]
+position = Vector2(41913, 562)
+
+[node name="Hopper41" parent="HopperGroup" unique_id=911339119 instance=ExtResource("6_7mycd")]
+position = Vector2(39858, 528)
+
+[node name="Hopper46" parent="HopperGroup" unique_id=1974587885 instance=ExtResource("6_7mycd")]
+position = Vector2(44564, 410)
+
+[node name="Hopper47" parent="HopperGroup" unique_id=1448133684 instance=ExtResource("6_7mycd")]
+position = Vector2(49005, 284)
+
+[node name="Hopper48" parent="HopperGroup" unique_id=1818110960 instance=ExtResource("6_7mycd")]
+position = Vector2(48134, 526)
+
+[node name="Hopper49" parent="HopperGroup" unique_id=1621087569 instance=ExtResource("6_7mycd")]
+position = Vector2(49836, 582)
+
+[node name="Hopper52" parent="HopperGroup" unique_id=1964627113 instance=ExtResource("6_7mycd")]
+position = Vector2(53711, 166)
+
+[node name="Hopper53" parent="HopperGroup" unique_id=232261194 instance=ExtResource("6_7mycd")]
+position = Vector2(52666, 528)
+
+[node name="Hopper54" parent="HopperGroup" unique_id=40267746 instance=ExtResource("6_7mycd")]
+position = Vector2(54542, 464)
+
+[node name="BouncerGroup" type="CanvasGroup" parent="." unique_id=1475602717]
+position = Vector2(764, 561)
+
+[node name="Bouncer" parent="BouncerGroup" unique_id=200657326 instance=ExtResource("4_1bvp3")]
+position = Vector2(17, 0)
+
+[node name="BouncerLG" parent="BouncerGroup" unique_id=79131146 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(466, 0)
+
+[node name="Bouncer2" parent="BouncerGroup" unique_id=1204321091 instance=ExtResource("4_1bvp3")]
+position = Vector2(3305, 0)
+
+[node name="BouncerLG2" parent="BouncerGroup" unique_id=220448700 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(4603, 0)
+
+[node name="Bouncer3" parent="BouncerGroup" unique_id=1140013386 instance=ExtResource("4_1bvp3")]
+position = Vector2(1109, 0)
+
+[node name="BouncerLG3" parent="BouncerGroup" unique_id=966501999 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(2974, 0)
+
+[node name="BouncerLG4" parent="BouncerGroup" unique_id=1345919775 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(2088, 0)
+
+[node name="Bouncer4" parent="BouncerGroup" unique_id=126499419 instance=ExtResource("4_1bvp3")]
+position = Vector2(5770, 0)
+
+[node name="BouncerLG5" parent="BouncerGroup" unique_id=643368836 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(6386, 0)
+
+[node name="Bouncer6" parent="BouncerGroup" unique_id=1656956080 instance=ExtResource("4_1bvp3")]
+position = Vector2(7271, 0)
+
+[node name="BouncerLG8" parent="BouncerGroup" unique_id=309873007 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(8074, 0)
+
+[node name="BouncerLG9" parent="BouncerGroup" unique_id=1515245900 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(12183, 0)
+
+[node name="Bouncer7" parent="BouncerGroup" unique_id=1933936023 instance=ExtResource("4_1bvp3")]
+position = Vector2(8495, 0)
+
+[node name="BouncerLG10" parent="BouncerGroup" unique_id=753605896 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(10360, 0)
+
+[node name="Bouncer8" parent="BouncerGroup" unique_id=1475055217 instance=ExtResource("4_1bvp3")]
+position = Vector2(13156, 0)
+
+[node name="BouncerLG12" parent="BouncerGroup" unique_id=451231482 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(13772, 0)
+
+[node name="BouncerLG13" parent="BouncerGroup" unique_id=762763570 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(17909, 0)
+
+[node name="Bouncer10" parent="BouncerGroup" unique_id=997239985 instance=ExtResource("4_1bvp3")]
+position = Vector2(14657, 0)
+
+[node name="BouncerLG14" parent="BouncerGroup" unique_id=1442909753 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(16280, 0)
+
+[node name="Bouncer11" parent="BouncerGroup" unique_id=1056380130 instance=ExtResource("4_1bvp3")]
+position = Vector2(18578, 0)
+
+[node name="BouncerLG15" parent="BouncerGroup" unique_id=331121117 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(19876, 0)
+
+[node name="BouncerLG16" parent="BouncerGroup" unique_id=378703796 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(21342, 0)
+
+[node name="Bouncer12" parent="BouncerGroup" unique_id=1034494087 instance=ExtResource("4_1bvp3")]
+position = Vector2(22509, 0)
+
+[node name="BouncerLG19" parent="BouncerGroup" unique_id=696130097 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(23125, 0)
+
+[node name="Bouncer13" parent="BouncerGroup" unique_id=2123470035 instance=ExtResource("4_1bvp3")]
+position = Vector2(25964, 0)
+
+[node name="Bouncer14" parent="BouncerGroup" unique_id=879797238 instance=ExtResource("4_1bvp3")]
+position = Vector2(24010, 0)
+
+[node name="BouncerLG21" parent="BouncerGroup" unique_id=1762203608 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(25633, 0)
+
+[node name="BouncerLG22" parent="BouncerGroup" unique_id=1160713796 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(28183, 0)
+
+[node name="Bouncer16" parent="BouncerGroup" unique_id=1493544039 instance=ExtResource("4_1bvp3")]
+position = Vector2(31022, 0)
+
+[node name="BouncerLG23" parent="BouncerGroup" unique_id=734601365 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(32320, 0)
+
+[node name="Bouncer17" parent="BouncerGroup" unique_id=2127493505 instance=ExtResource("4_1bvp3")]
+position = Vector2(28826, 0)
+
+[node name="BouncerLG25" parent="BouncerGroup" unique_id=1247651208 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(29805, 0)
+
+[node name="Bouncer18" parent="BouncerGroup" unique_id=42784504 instance=ExtResource("4_1bvp3")]
+position = Vector2(33487, 0)
+
+[node name="BouncerLG26" parent="BouncerGroup" unique_id=698600561 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(34103, 0)
+
+[node name="Bouncer19" parent="BouncerGroup" unique_id=1993099005 instance=ExtResource("4_1bvp3")]
+position = Vector2(36942, 0)
+
+[node name="BouncerLG27" parent="BouncerGroup" unique_id=2007611555 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(38240, 0)
+
+[node name="Bouncer20" parent="BouncerGroup" unique_id=231244619 instance=ExtResource("4_1bvp3")]
+position = Vector2(34988, 0)
+
+[node name="BouncerLG28" parent="BouncerGroup" unique_id=1377521814 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(36611, 0)
+
+[node name="BouncerLG29" parent="BouncerGroup" unique_id=1669628915 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(35791, 0)
+
+[node name="BouncerLG30" parent="BouncerGroup" unique_id=384957218 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(39900, 0)
+
+[node name="Bouncer21" parent="BouncerGroup" unique_id=1959231393 instance=ExtResource("4_1bvp3")]
+position = Vector2(36212, 0)
+
+[node name="BouncerLG31" parent="BouncerGroup" unique_id=1043085728 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(38077, 0)
+
+[node name="BouncerLG32" parent="BouncerGroup" unique_id=1450461720 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(37191, 0)
+
+[node name="Bouncer22" parent="BouncerGroup" unique_id=716556878 instance=ExtResource("4_1bvp3")]
+position = Vector2(40873, 0)
+
+[node name="BouncerLG33" parent="BouncerGroup" unique_id=1794560660 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(41489, 0)
+
+[node name="Bouncer23" parent="BouncerGroup" unique_id=952735561 instance=ExtResource("4_1bvp3")]
+position = Vector2(44328, 0)
+
+[node name="BouncerLG34" parent="BouncerGroup" unique_id=1334520862 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(45626, 0)
+
+[node name="Bouncer24" parent="BouncerGroup" unique_id=1761321249 instance=ExtResource("4_1bvp3")]
+position = Vector2(42374, 0)
+
+[node name="BouncerLG35" parent="BouncerGroup" unique_id=523966627 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(43997, 0)
+
+[node name="BouncerLG37" parent="BouncerGroup" unique_id=16358869 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(49059, 0)
+
+[node name="BouncerLG39" parent="BouncerGroup" unique_id=248662573 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(46544, 0)
+
+[node name="Bouncer26" parent="BouncerGroup" unique_id=1526163937 instance=ExtResource("4_1bvp3")]
+position = Vector2(50226, 0)
+
+[node name="Bouncer27" parent="BouncerGroup" unique_id=567439762 instance=ExtResource("4_1bvp3")]
+position = Vector2(53681, 0)
+
+[node name="BouncerLG41" parent="BouncerGroup" unique_id=454057319 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(54979, 0)
+
+[node name="BouncerLG42" parent="BouncerGroup" unique_id=201475945 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(53350, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=933197081]
 
 [node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=485472565]
-offset_left = 14.0
-offset_top = 61.0
-offset_right = 65.0
-offset_bottom = 92.0
+offset_left = 18.0
+offset_top = 48.0
+offset_right = 69.0
+offset_bottom = 79.0
 text = "Reset"
 
 [node name="JumpButton" type="Button" parent="CanvasLayer" unique_id=36778432]
+visible = false
 offset_left = 18.0
 offset_top = 13.0
 offset_right = 102.0
@@ -138,7 +388,16 @@ metadata/_edit_lock_ = true
 stream = ExtResource("8_5vw27")
 
 [node name="Launcher" parent="." unique_id=170151492 instance=ExtResource("9_kek77")]
-position = Vector2(151, 547)
+position = Vector2(143, 500)
+
+[node name="Label" type="Label" parent="." unique_id=1505929417]
+offset_left = 25.0
+offset_top = 698.0
+offset_right = 456.0
+offset_bottom = 791.0
+text = "SPACE BAR to jump / launch
+DOWN ARROW to dive"
+label_settings = SubResource("LabelSettings_4c57u")
 
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverScreen/PlayAgainButton" to="." method="_on_reset_button_pressed"]
