@@ -18,6 +18,7 @@ const DEFAULT_JUMP_SPEED := 400
 @onready var jump_button = get_node("/root/Main/CanvasLayer/JumpButton")
 @onready var score_label = get_node("/root/Main/CanvasLayer/ScoreLabel")
 @onready var game_over_screen = get_node("/root/Main/CanvasLayer/GameOverScreen")
+@onready var power_indicator = get_node("/root/Main/Launcher")
 
 # --- CHARGEMENT DES FICHIERS AUDIO ---
 var sound_boing_big = preload("res://boing-big.wav")
@@ -94,9 +95,9 @@ func _apply_gravity(delta):
 # --- Launch Input ---
 func _handle_launch_input(delta):
 	if is_starting:
-		if Input.is_action_pressed("jump"):
+		if Input.is_action_pressed("ui_accept"):
 			_charge_launch(delta)
-		elif Input.is_action_just_released("jump") and is_charging:
+		elif Input.is_action_just_released("ui_accept") and is_charging:
 			_execute_launch()
 			is_charging = false
 			is_starting = false
@@ -105,6 +106,7 @@ func _charge_launch(delta):
 	is_charging = true
 	launch_power += LAUNCH_CHARGE_SPEED * delta * launch_direction
 	launch_power = clamp(launch_power, 0, MAX_LAUNCH_POWER)
+	_update_power_indicator()  # Update color
 
 	if launch_power >= MAX_LAUNCH_POWER:
 		launch_direction = -1
@@ -113,7 +115,7 @@ func _charge_launch(delta):
 
 # --- Dive Input ---
 func _handle_dive_input():
-	if Input.is_action_just_pressed("ui_accept") and not is_on_floor():
+	if Input.is_action_just_pressed("ui_down") and not is_on_floor():
 		_on_dive()
 
 # --- Floor Collision ---
@@ -151,6 +153,8 @@ func _execute_launch():
 	velocity.y = jump_velocity
 	speed = int(launch_power * LAUNCH_SPEED_RATIO)
 	launch_power = 0
+	self.visible = true
+	_update_power_indicator()  # Reset color
 	
 	if jump_sound_big:
 		jump_sound_big.play()
@@ -205,7 +209,7 @@ func _update_jump_button():
 	jump_button.text = "Jump (%d)" % leg_count
 
 func _handle_jump_input():
-	if Input.is_action_just_pressed("jump") and not is_starting:
+	if Input.is_action_just_pressed("ui_accept") and not is_starting:
 		_on_jump()
 
 func _on_jump():
@@ -221,3 +225,7 @@ func _on_jump():
 		
 func _update_score_label():
 	score_label.text = "Score: %.1f m" % (global_position.x/1000-0.16)
+	
+func _update_power_indicator():
+	var normalized_power = float(launch_power) / MAX_LAUNCH_POWER
+	power_indicator.modulate = Color(1, 1 - normalized_power, 1 - normalized_power)  # Red = max power, White = min

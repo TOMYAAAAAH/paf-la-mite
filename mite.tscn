@@ -21,9 +21,10 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_bcwpt")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1144531218]
-offset = Vector2(0, -169)
+zoom = Vector2(0.5, 0.5)
 
 [node name="VelocityLabel" type="Label" parent="." unique_id=854925634]
+visible = false
 offset_left = -88.0
 offset_top = -311.0
 offset_right = -48.0

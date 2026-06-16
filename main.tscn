@@ -10,6 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://doilvmamtjjh1" path="res://theme.mp3" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dxwcdc8564acy" path="res://launcher.tscn" id="9_kek77"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_kek77"]
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_7mycd"]
 font_size = 49
 font_color = Color(0.86981654, 0, 0, 1)
@@ -36,16 +39,47 @@ script = ExtResource("1_lquwl")
 position = Vector2(-6, 46)
 
 [node name="Mite" parent="." unique_id=693137260 instance=ExtResource("1_0xm2m")]
-position = Vector2(157, 566)
+visible = false
+position = Vector2(216, 480)
 
-[node name="Bouncer" parent="." unique_id=200657326 instance=ExtResource("4_1bvp3")]
-position = Vector2(369, 557)
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1475602717]
+position = Vector2(767, 515)
 
-[node name="BouncerLG" parent="." unique_id=79131146 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
-position = Vector2(981, 553)
+[node name="Bouncer" parent="CanvasGroup" unique_id=200657326 instance=ExtResource("4_1bvp3")]
+position = Vector2(17, 41)
 
-[node name="Bouncer2" parent="." unique_id=1204321091 instance=ExtResource("4_1bvp3")]
-position = Vector2(598, 558)
+[node name="BouncerLG" parent="CanvasGroup" unique_id=79131146 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(466, 21)
+
+[node name="Bouncer2" parent="CanvasGroup" unique_id=1204321091 instance=ExtResource("4_1bvp3")]
+position = Vector2(3305, 39)
+
+[node name="Hopper" parent="CanvasGroup" unique_id=708622132 instance=ExtResource("6_7mycd")]
+position = Vector2(740, -277)
+
+[node name="BouncerLG2" parent="CanvasGroup" unique_id=220448700 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(4603, 21)
+
+[node name="Bouncer3" parent="CanvasGroup" unique_id=1140013386 instance=ExtResource("4_1bvp3")]
+position = Vector2(1109, 41)
+
+[node name="Hopper2" parent="CanvasGroup" unique_id=1891947176 instance=ExtResource("6_7mycd")]
+position = Vector2(3232, -263)
+
+[node name="Hopper3" parent="CanvasGroup" unique_id=1147240129 instance=ExtResource("6_7mycd")]
+position = Vector2(2361, -21)
+
+[node name="BouncerLG3" parent="CanvasGroup" unique_id=966501999 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(2974, 33)
+
+[node name="Hopper4" parent="CanvasGroup" unique_id=1572946301 instance=ExtResource("6_7mycd")]
+position = Vector2(4063, 35)
+
+[node name="Hopper5" parent="CanvasGroup" unique_id=1582883039 instance=ExtResource("6_7mycd")]
+position = Vector2(2008, 1)
+
+[node name="BouncerLG4" parent="CanvasGroup" unique_id=1345919775 groups=["bouncer_lg"] instance=ExtResource("7_5vw27")]
+position = Vector2(2088, 57)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=933197081]
 
@@ -68,6 +102,7 @@ offset_left = 210.0
 offset_top = 53.0
 offset_right = 250.0
 offset_bottom = 76.0
+label_settings = SubResource("LabelSettings_kek77")
 
 [node name="GameOverScreen" type="CanvasGroup" parent="CanvasLayer" unique_id=1795708195]
 visible = false
@@ -87,9 +122,6 @@ offset_bottom = 133.0
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_7mycd")
 
-[node name="Hopper" parent="." unique_id=708622132 instance=ExtResource("6_7mycd")]
-position = Vector2(300, 510)
-
 [node name="ProceduralBackground" type="CanvasLayer" parent="." unique_id=2000960349]
 layer = -1
 
@@ -106,8 +138,7 @@ metadata/_edit_lock_ = true
 stream = ExtResource("8_5vw27")
 
 [node name="Launcher" parent="." unique_id=170151492 instance=ExtResource("9_kek77")]
-position = Vector2(81, 429)
+position = Vector2(151, 547)
 
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverScreen/PlayAgainButton" to="." method="_on_reset_button_pressed"]
-[connection signal="leg_collected" from="Hopper" to="Mite" method="_on_leg_collected"]
