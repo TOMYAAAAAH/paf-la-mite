@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://drewna04sxgtr"]
+
+[ext_resource type="PackedScene" uid="uid://c3ju64y5n75u5" path="res://mite.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bwlhkhq6me7cx" path="res://floor.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://b36rfxdnau3mq" path="res://grid.png" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://c2angheo0hmqj" path="res://bouncer.tscn" id="4_1bvp3"]
+
+[node name="Main" type="Node2D" unique_id=2144659749]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=650109987]
+offset_top = -363.0
+offset_right = 6459.0
+offset_bottom = 713.0
+texture = ExtResource("3_h2yge")
+stretch_mode = 1
+
+[node name="Floor" parent="." unique_id=215917808 instance=ExtResource("2_h2yge")]
+position = Vector2(-19, -127)
+
+[node name="Mite" parent="." unique_id=693137260 instance=ExtResource("1_0xm2m")]
+
+[node name="Area2D" parent="." unique_id=200657326 instance=ExtResource("4_1bvp3")]
+position = Vector2(379, 498)

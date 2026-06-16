@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c2angheo0hmqj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww1wp"]
+size = Vector2(40, 40)
+
+[node name="Bouncer" type="StaticBody2D" unique_id=2060613599]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1032122862]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.70171434, 0.00047784208, 0.7246397, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=104845290]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_ww1wp")
