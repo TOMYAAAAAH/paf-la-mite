@@ -28,14 +28,14 @@ radius = 31.0
 height = 62.0
 
 [node name="Mite" type="CharacterBody2D" unique_id=693137260]
-position = Vector2(186, 153)
+position = Vector2(1, 2)
 script = ExtResource("1_ekd8s")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=877561712]
 sprite_frames = SubResource("SpriteFrames_tnjd3")
 animation = &"fly"
-frame_progress = 0.2203509
+frame_progress = 0.32465953
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1576460365]
 shape = SubResource("CapsuleShape2D_bcwpt")
@@ -43,7 +43,7 @@ shape = SubResource("CapsuleShape2D_bcwpt")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1144531218]
 
 [node name="VelocityLabel" type="Label" parent="." unique_id=854925634]
-offset_left = -112.0
-offset_top = -135.0
-offset_right = -72.0
-offset_bottom = -112.0
+offset_left = -88.0
+offset_top = -311.0
+offset_right = -48.0
+offset_bottom = -288.0

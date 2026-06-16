@@ -19,7 +19,9 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=480
 window/size/viewport_height=720
+window/size/borderless=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
 
 [global_group]
 

@@ -20,6 +20,7 @@ shader_parameter/line_spacing = 0.06
 shader_parameter/line_thickness = 0.002
 shader_parameter/margin_position = 0.15
 shader_parameter/margin_thickness = 0.003
+[ext_resource type="PackedScene" uid="uid://dxwcdc8564acy" path="res://launcher.tscn" id="7_272bh"]
 
 [node name="Main" type="Node2D" unique_id=2144659749]
 script = ExtResource("1_lquwl")
@@ -72,6 +73,12 @@ offset_left = 6.0
 offset_top = -782.0
 offset_right = 8166.0
 offset_bottom = 555.0
+
+[node name="Launcher" parent="." unique_id=1791333389 instance=ExtResource("7_272bh")]
+offset_left = 30.0
+offset_top = 492.0
+offset_right = 70.0
+offset_bottom = 532.0
 
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="leg_collected" from="Hopper" to="Mite" method="_on_leg_collected"]
