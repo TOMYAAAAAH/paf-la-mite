@@ -41,6 +41,7 @@ frame_progress = 0.32465953
 shape = SubResource("CapsuleShape2D_bcwpt")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1144531218]
+offset = Vector2(0, -169)
 
 [node name="VelocityLabel" type="Label" parent="." unique_id=854925634]
 offset_left = -88.0

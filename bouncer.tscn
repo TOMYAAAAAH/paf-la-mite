@@ -1,15 +1,21 @@
 [gd_scene format=3 uid="uid://c2angheo0hmqj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww1wp"]
-size = Vector2(68, 40)
+[ext_resource type="Script" uid="uid://ct7anu88crak2" path="res://bouncer.gd" id="1_38d00"]
+[ext_resource type="Texture2D" uid="uid://bw04peareq5cf" path="res://art/mushroom_s.png" id="2_f2aea"]
 
-[node name="Bouncer" type="StaticBody2D" unique_id=1204321091 groups=["bouncer"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f2aea"]
+radius = 27.0
+height = 78.0
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1032122862]
-offset_right = 68.0
-offset_bottom = 40.0
-color = Color(0.70171434, 0.00047784208, 0.7246397, 1)
+[node name="BouncerSM" type="Area2D" unique_id=79131146 groups=["bouncer"]]
+script = ExtResource("1_38d00")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=104845290]
 position = Vector2(34, 20)
-shape = SubResource("RectangleShape2D_ww1wp")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_f2aea")
+
+[node name="MushroomS" type="Sprite2D" parent="." unique_id=413692375]
+position = Vector2(34, 21)
+scale = Vector2(0.27401128, 0.2740113)
+texture = ExtResource("2_f2aea")

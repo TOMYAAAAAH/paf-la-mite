@@ -28,6 +28,7 @@ var is_charging = false
 # --- Initialization ---
 func _ready():
 	_setup_hopper_connections()
+	_setup_bouncer_connections()
 	_update_jump_button()
 	jump_button.pressed.connect(_on_jump)
 
@@ -36,6 +37,11 @@ func _setup_hopper_connections():
 	for hopper in hoppers:
 		hopper.leg_collected.connect(_on_leg_collected)
 
+func _setup_bouncer_connections():  # NEW
+	var bouncers = get_tree().get_nodes_in_group("bouncer")
+	for bouncer in bouncers:
+		bouncer.bouncer_sm_hit.connect(_on_bouncer_sm_hit)
+
 # --- Physics Process ---
 func _physics_process(delta):
 	_apply_gravity(delta)
@@ -43,7 +49,6 @@ func _physics_process(delta):
 	_handle_dive_input()
 	_handle_floor_collision()
 	_apply_movement()
-	_handle_bouncer_collisions()
 	_update_debug_label()
 
 # --- Gravity ---
@@ -88,22 +93,10 @@ func _apply_movement():
 		velocity.x = speed
 		move_and_slide()
 
-# --- Bouncer Collisions ---
-func _handle_bouncer_collisions():
-	for i in range(get_slide_collision_count()):
-		var collider = get_slide_collision(i).get_collider()
-		if collider.is_in_group("bouncer"):
-			_apply_bouncer_effect()
-
-func _apply_bouncer_effect():
-	jump_velocity *= BOUNCER_SPEED_MULTIPLIER
-	velocity.y = jump_velocity
-	speed *= BOUNCER_SPEED_MULTIPLIER
-
 # --- Debug Label ---
 func _update_debug_label():
 	velocity_label.text = "Vel X: %.1f\nVel Y: %.1f\nLast Vel Y: %.1f\nLegs: %d\nLaunch Power: %d" % [velocity.x, velocity.y, jump_velocity, leg_count, launch_power]
-	velocity_label.set("theme_override_colors/font_color", Color.WHITE)
+	velocity_label.set("theme_override_colors/font_color", Color.BLACK)
 	velocity_label.set("theme_override_font_sizes/font_size", 16)
 
 # --- Launch Execution ---
@@ -117,6 +110,11 @@ func _execute_launch():
 func _on_leg_collected():
 	leg_count += 1
 	_update_jump_button()
+	
+func _on_bouncer_sm_hit():
+	jump_velocity *= BOUNCER_SPEED_MULTIPLIER
+	velocity.y = jump_velocity
+	speed *= BOUNCER_SPEED_MULTIPLIER
 
 # --- Dive ---
 func _on_dive():

@@ -26,35 +26,35 @@ shader_parameter/camera_y = 0.0
 script = ExtResource("1_lquwl")
 
 [node name="Floor" parent="." unique_id=215917808 instance=ExtResource("2_h2yge")]
-position = Vector2(-19, -127)
+position = Vector2(-6, 46)
 
 [node name="Mite" parent="." unique_id=693137260 instance=ExtResource("1_0xm2m")]
-position = Vector2(80, 499)
+position = Vector2(157, 566)
 
 [node name="Bouncer" parent="." unique_id=200657326 instance=ExtResource("4_1bvp3")]
-position = Vector2(452, 490)
+position = Vector2(369, 557)
 
 [node name="Bouncer2" parent="." unique_id=1204321091 instance=ExtResource("4_1bvp3")]
-position = Vector2(1054, 490)
+position = Vector2(598, 558)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=933197081]
 
 [node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=485472565]
 offset_left = 14.0
-offset_top = 269.0
+offset_top = 61.0
 offset_right = 65.0
-offset_bottom = 300.0
+offset_bottom = 92.0
 text = "Reset"
 
 [node name="JumpButton" type="Button" parent="CanvasLayer" unique_id=36778432]
 offset_left = 18.0
-offset_top = 221.0
+offset_top = 13.0
 offset_right = 102.0
-offset_bottom = 252.0
+offset_bottom = 44.0
 text = "Sauter (n)"
 
 [node name="Hopper" parent="." unique_id=708622132 instance=ExtResource("6_7mycd")]
-position = Vector2(183, 454)
+position = Vector2(300, 510)
 
 [node name="ProceduralBackground" type="CanvasLayer" parent="." unique_id=2000960349]
 layer = -1
@@ -66,6 +66,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="leg_collected" from="Hopper" to="Mite" method="_on_leg_collected"]
