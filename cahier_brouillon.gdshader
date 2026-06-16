@@ -17,14 +17,16 @@ uniform float line_thickness : hint_range(0.001, 0.01) = 0.002;           // Ép
 uniform float margin_position : hint_range(0.0, 1.0) = 0.15;              // Position de la ligne rouge à gauche
 uniform float margin_thickness : hint_range(0.001, 0.01) = 0.003;          // Épaisseur de la ligne rouge
 
+group_uniforms Deplacement;
+uniform float camera_x = 0.0;                                             // Lié à la position X de la caméra
+uniform float camera_y = 0.0;                                             // Lié à la position Y de la caméra
+
 // --- FONCTIONS DE BRUIT PROCÉDURAL ---
 
-// Bruit de base (White Noise) pour le grain fin
 float random(vec2 st) {
     return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
 }
 
-// Bruit adouci (Value Noise) pour les fibres et les imperfections du papier
 float noise(vec2 st) {
     vec2 i = floor(st);
     vec2 f = fract(st);
@@ -34,7 +36,6 @@ float noise(vec2 st) {
     float c = random(i + vec2(0.0, 1.0));
     float d = random(i + vec2(1.0, 1.0));
 
-    // Interpolation cubique (Hermite) pour adoucir les transitions
     vec2 u = f * f * (3.0 - 2.0 * f);
 
     return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
@@ -43,48 +44,46 @@ float noise(vec2 st) {
 void fragment() {
     vec2 uv = UV;
     
+    // Création d'un UV virtuel synchronisé sur les mouvements de la caméra
+    // Le multiplicateur 0.0002 crée un effet de parallaxe discret et fluide
+    vec2 moving_uv = vec2(uv.x + (camera_x * 0.0002), uv.y + (camera_y * 0.0002)); 
+    
     // -------------------------------------------------------------
     // 1. GÉNÉRATION DE L'ASPECT PAPIER (LE FOND)
     // -------------------------------------------------------------
-    // Grain de bruit très fin et "pixelisé"
-    float grain = random(uv * 999.0);
+    float grain = random(uv * 999.0); // Le grain fin reste calé sur l'écran
     
-    // Fibres et variations de texture plus larges (effet froissé/imparfait)
-    float fibers = noise(uv * paper_scale);
-    float fibers2 = noise(uv * (paper_scale * 0.4)); // Deuxième couche plus large
+    // Les imperfections et fibres bougent avec le papier
+    float fibers = noise(moving_uv * paper_scale);
+    float fibers2 = noise(moving_uv * (paper_scale * 0.4)); 
     float paper_texture = (grain * grain_intensity) + (fibers * fiber_intensity) + (fibers2 * fiber_intensity * 0.5);
     
-    // Application de la texture sur la couleur de base du papier
     vec4 final_color = color_paper - vec4(vec3(paper_texture), 0.0);
 
     // -------------------------------------------------------------
     // 2. DESSIN DES LIGNES HORIZONTALES (BLEUES)
     // -------------------------------------------------------------
-    // Effet "tracé à la main" pour faire osciller la ligne horizontale
-    float hand_drawn_offset_y = (noise(vec2(uv.x * 10.0, 0.0)) - 0.5) * 0.0015;
+    // Effet tracé main stabilisé grâce au moving_uv
+    float hand_drawn_offset_y = (noise(vec2(moving_uv.x * 10.0, 0.0)) - 0.5) * 0.0015;
     
-    float pos_y = uv.y + hand_drawn_offset_y;
+    float pos_y = moving_uv.y + hand_drawn_offset_y;
     float horizontal_pattern = fract(pos_y / line_spacing);
     
-    // Génération de la ligne
     float is_horizontal_line = step(1.0 - (line_thickness / line_spacing), horizontal_pattern);
 
     // -------------------------------------------------------------
     // 3. DESSIN DE LA MARGE VERTICALE (ROUGE)
     // -------------------------------------------------------------
-    // Effet "fait main" pour la ligne verticale
-    float hand_drawn_offset_x = (noise(vec2(0.0, uv.y * 8.0)) - 0.5) * 0.002;
+    // Effet tracé main stabilisé également
+    float hand_drawn_offset_x = (noise(vec2(0.0, moving_uv.y * 8.0)) - 0.5) * 0.002;
     
-    float pos_x = uv.x + hand_drawn_offset_x;
+    float pos_x = moving_uv.x + hand_drawn_offset_x;
     float is_margin_line = step(margin_position, pos_x) * step(pos_x, margin_position + margin_thickness);
 
     // -------------------------------------------------------------
     // 4. MELANGE FINAL
     // -------------------------------------------------------------
-    // Application des lignes bleues
     final_color = mix(final_color, color_lines, is_horizontal_line * color_lines.a);
-    
-    // Application de la marge rouge
     final_color = mix(final_color, color_margin, is_margin_line * color_margin.a);
 
     COLOR = final_color;
