@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c2angheo0hmqj"]
+
+[ext_resource type="Script" uid="uid://ct7anu88crak2" path="res://bouncer_sm.gd" id="1_38d00"]
+[ext_resource type="Texture2D" uid="uid://bw04peareq5cf" path="res://art/mushroom_s.png" id="2_f2aea"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f2aea"]
+radius = 35.0
+height = 102.0
+
+[node name="BouncerSM" type="Area2D" unique_id=79131146 groups=["bouncer_sm"]]
+script = ExtResource("1_38d00")
+
+[node name="MushroomS" type="Sprite2D" parent="." unique_id=413692375]
+position = Vector2(45.166664, 12.625)
+scale = Vector2(0.36864406, 0.36864406)
+texture = ExtResource("2_f2aea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=104845290]
+position = Vector2(46, 11)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_f2aea")

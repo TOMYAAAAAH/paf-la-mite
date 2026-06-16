@@ -28,7 +28,6 @@ radius = 31.0
 height = 62.0
 
 [node name="Mite" type="CharacterBody2D" unique_id=693137260]
-position = Vector2(1, 2)
 script = ExtResource("1_ekd8s")
 metadata/_edit_group_ = true
 

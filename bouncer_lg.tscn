@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cuhnv5iemw5my"]
+
+[ext_resource type="Script" uid="uid://bydu64k0w8248" path="res://bouncer_lg.gd" id="1_fyubk"]
+[ext_resource type="Texture2D" uid="uid://b32beyrq8d7rr" path="res://art/mushroom_l.png" id="2_fyubk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f2aea"]
+radius = 48.0
+height = 148.0
+
+[node name="BouncerLG" type="Area2D" unique_id=79131146]
+script = ExtResource("1_fyubk")
+
+[node name="MushroomL" type="Sprite2D" parent="." unique_id=1670090856 groups=["bouncer_lg"]]
+position = Vector2(49, 5.9999995)
+scale = Vector2(0.31746036, 0.31746033)
+texture = ExtResource("2_fyubk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=104845290]
+position = Vector2(52, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_f2aea")

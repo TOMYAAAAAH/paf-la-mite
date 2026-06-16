@@ -4,7 +4,8 @@ extends CharacterBody2D
 const GRAVITY := 980
 const MAX_LAUNCH_POWER := 1000
 const LAUNCH_CHARGE_SPEED := 1000
-const BOUNCER_SPEED_MULTIPLIER := 1.2
+const BOUNCER_SPEED_MULTIPLIER_SM := 1.2
+const BOUNCER_SPEED_MULTIPLIER_LG := 1.8
 const FLOOR_SPEED_MULTIPLIER := 0.7
 const DIVE_VELOCITY_MULTIPLIER := 1.1
 const LAUNCH_SPEED_RATIO := 0.7
@@ -15,6 +16,8 @@ const DEFAULT_JUMP_SPEED := 400
 # --- Node References ---
 @onready var velocity_label = $VelocityLabel
 @onready var jump_button = get_node("/root/Main/CanvasLayer/JumpButton")
+@onready var score_label = get_node("/root/Main/CanvasLayer/ScoreLabel")
+@onready var game_over_screen = get_node("/root/Main/CanvasLayer/GameOverScreen")
 
 # --- State Variables ---
 var speed = 0
@@ -37,19 +40,30 @@ func _setup_hopper_connections():
 	for hopper in hoppers:
 		hopper.leg_collected.connect(_on_leg_collected)
 
-func _setup_bouncer_connections():  # NEW
-	var bouncers = get_tree().get_nodes_in_group("bouncer")
-	for bouncer in bouncers:
-		bouncer.bouncer_sm_hit.connect(_on_bouncer_sm_hit)
+func _setup_bouncer_connections():
+	var bouncers_sm = get_tree().get_nodes_in_group("bouncer_sm")
+	for b_sm in bouncers_sm:
+		if b_sm.has_signal("bouncer_sm_hit"):
+			b_sm.bouncer_sm_hit.connect(_on_bouncer_sm_hit)
+		else:
+			printerr("Node %s in bouncer_sm group is missing bouncer_sm_hit signal!" % b_sm.name)
 
+	var bouncers_lg = get_tree().get_nodes_in_group("bouncer_lg")
+	for b_lg in bouncers_lg:
+		if b_lg.has_signal("bouncer_lg_hit"):
+			b_lg.bouncer_lg_hit.connect(_on_bouncer_lg_hit)
+		else:
+			printerr("Node %s in bouncer_lg group is missing bouncer_lg_hit signal!" % b_lg.name)
+			
 # --- Physics Process ---
 func _physics_process(delta):
 	_apply_gravity(delta)
+	_handle_floor_collision()
 	_handle_launch_input(delta)
 	_handle_dive_input()
-	_handle_floor_collision()
 	_apply_movement()
 	_update_debug_label()
+	_update_score_label()
 
 # --- Gravity ---
 func _apply_gravity(delta):
@@ -110,11 +124,16 @@ func _execute_launch():
 func _on_leg_collected():
 	leg_count += 1
 	_update_jump_button()
-	
+
 func _on_bouncer_sm_hit():
-	jump_velocity *= BOUNCER_SPEED_MULTIPLIER
+	jump_velocity *= BOUNCER_SPEED_MULTIPLIER_SM
 	velocity.y = jump_velocity
-	speed *= BOUNCER_SPEED_MULTIPLIER
+	speed *= BOUNCER_SPEED_MULTIPLIER_SM
+
+func _on_bouncer_lg_hit():
+	jump_velocity *= BOUNCER_SPEED_MULTIPLIER_LG
+	velocity.y = jump_velocity
+	speed *= BOUNCER_SPEED_MULTIPLIER_LG
 
 # --- Dive ---
 func _on_dive():
@@ -128,6 +147,7 @@ func _on_floor_touched():
 		speed *= FLOOR_SPEED_MULTIPLIER
 	else:
 		speed = 0
+		game_over_screen.visible = true
 
 # --- Jump Button ---
 func _update_jump_button():
@@ -140,3 +160,6 @@ func _on_jump():
 		speed = DEFAULT_JUMP_SPEED
 		leg_count -= 1
 		_update_jump_button()
+		
+func _update_score_label():
+	score_label.text = "Score: %.1f m" % (global_position.x/1000-0.16)
