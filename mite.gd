@@ -19,6 +19,14 @@ const DEFAULT_JUMP_SPEED := 400
 @onready var score_label = get_node("/root/Main/CanvasLayer/ScoreLabel")
 @onready var game_over_screen = get_node("/root/Main/CanvasLayer/GameOverScreen")
 
+# --- CHARGEMENT DES FICHIERS AUDIO ---
+var sound_boing_big = preload("res://boing-big.wav")
+var sound_boing_small = preload("res://boing-small.wav")
+
+# On crée des lecteurs audio directement en code pour éviter les erreurs de nœuds manquants
+var jump_sound_big : AudioStreamPlayer2D
+var jump_sound_small : AudioStreamPlayer2D
+
 # --- State Variables ---
 var speed = 0
 var jump_velocity = 0
@@ -30,31 +38,26 @@ var is_charging = false
 
 # --- Initialization ---
 func _ready():
+	_setup_audio_players()
 	_setup_hopper_connections()
-	_setup_bouncer_connections()
 	_update_jump_button()
 	jump_button.pressed.connect(_on_jump)
+
+# Génération propre des lecteurs de son sans passer par l'arbre de l'éditeur
+func _setup_audio_players():
+	jump_sound_big = AudioStreamPlayer2D.new()
+	jump_sound_big.stream = sound_boing_big
+	add_child(jump_sound_big)
+	
+	jump_sound_small = AudioStreamPlayer2D.new()
+	jump_sound_small.stream = sound_boing_small
+	add_child(jump_sound_small)
 
 func _setup_hopper_connections():
 	var hoppers = get_tree().get_nodes_in_group("hopper")
 	for hopper in hoppers:
 		hopper.leg_collected.connect(_on_leg_collected)
 
-func _setup_bouncer_connections():
-	var bouncers_sm = get_tree().get_nodes_in_group("bouncer_sm")
-	for b_sm in bouncers_sm:
-		if b_sm.has_signal("bouncer_sm_hit"):
-			b_sm.bouncer_sm_hit.connect(_on_bouncer_sm_hit)
-		else:
-			printerr("Node %s in bouncer_sm group is missing bouncer_sm_hit signal!" % b_sm.name)
-
-	var bouncers_lg = get_tree().get_nodes_in_group("bouncer_lg")
-	for b_lg in bouncers_lg:
-		if b_lg.has_signal("bouncer_lg_hit"):
-			b_lg.bouncer_lg_hit.connect(_on_bouncer_lg_hit)
-		else:
-			printerr("Node %s in bouncer_lg group is missing bouncer_lg_hit signal!" % b_lg.name)
-			
 # --- Physics Process ---
 func _physics_process(delta):
 	_apply_gravity(delta)
@@ -101,11 +104,23 @@ func _handle_floor_collision():
 	if is_on_floor():
 		_on_floor_touched()
 
-# --- Movement ---
+# --- Movement & Bouncer Collision ---
 func _apply_movement():
 	if not is_starting:
 		velocity.x = speed
 		move_and_slide()
+		
+		# Détection directe des groupes de bouncers sur la map
+		for i in range(get_slide_collision_count()):
+			var collider = get_slide_collision(i).get_collider()
+			
+			if collider.is_in_group("bouncer_lg"):
+				_on_bouncer_lg_hit()
+				break
+				
+			elif collider.is_in_group("bouncer_sm"):
+				_on_bouncer_sm_hit()
+				break
 
 # --- Debug Label ---
 func _update_debug_label():
@@ -119,21 +134,37 @@ func _execute_launch():
 	velocity.y = jump_velocity
 	speed = int(launch_power * LAUNCH_SPEED_RATIO)
 	launch_power = 0
+	
+	if jump_sound_big:
+		jump_sound_big.play()
 
 # --- Leg Collection ---
 func _on_leg_collected():
 	leg_count += 1
 	_update_jump_button()
+	
+	if jump_sound_small:
+		jump_sound_small.play()
 
+# --- REBOND BOUNCER PETIT ---
 func _on_bouncer_sm_hit():
 	jump_velocity *= BOUNCER_SPEED_MULTIPLIER_SM
 	velocity.y = jump_velocity
 	speed *= BOUNCER_SPEED_MULTIPLIER_SM
+	
+	if jump_sound_small and not jump_sound_small.playing:
+		jump_sound_small.play()
+		print("🔊 Rebond + Son : res://boing-small.wav")
 
+# --- REBOND BOUNCER GROS ---
 func _on_bouncer_lg_hit():
 	jump_velocity *= BOUNCER_SPEED_MULTIPLIER_LG
 	velocity.y = jump_velocity
 	speed *= BOUNCER_SPEED_MULTIPLIER_LG
+	
+	if jump_sound_big and not jump_sound_big.playing:
+		jump_sound_big.play()
+		print("🔊 Rebond + Son : res://boing-big.wav")
 
 # --- Dive ---
 func _on_dive():
@@ -145,6 +176,9 @@ func _on_floor_touched():
 		jump_velocity *= FLOOR_SPEED_MULTIPLIER
 		velocity.y = jump_velocity
 		speed *= FLOOR_SPEED_MULTIPLIER
+		
+		if jump_sound_big and not jump_sound_big.playing:
+			jump_sound_big.play()
 	else:
 		speed = 0
 		game_over_screen.visible = true
@@ -160,6 +194,9 @@ func _on_jump():
 		speed = DEFAULT_JUMP_SPEED
 		leg_count -= 1
 		_update_jump_button()
+		
+		if jump_sound_small:
+			jump_sound_small.play()
 		
 func _update_score_label():
 	score_label.text = "Score: %.1f m" % (global_position.x/1000-0.16)
